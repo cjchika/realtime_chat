@@ -15,6 +15,12 @@ const Register = () => {
   });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      navigate("/");
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
