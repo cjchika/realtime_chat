@@ -18,21 +18,22 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("In validation");
     const { password, confirmPassword, username, email } = values;
-    const { data } = await axios.post(registerRoute, {
-      username,
-      email,
-      password,
-    });
-    if (data.status === false) {
-      toast.error(data.msg);
+    if (handleValidation()) {
+      const { data } = await axios.post(registerRoute, {
+        username,
+        email,
+        password,
+      });
+      console.log(data);
+      if (data.status === false) {
+        toast.error(data.msg);
+      }
+      if (data.status === true) {
+        localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+        navigate("/");
+      }
     }
-    if (data.status === true) {
-      localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-    }
-    navigate("/");
-    console.log(data);
   };
 
   const handleChange = (e) => {
@@ -55,6 +56,7 @@ const Register = () => {
       toast.error("Email cannot be blank");
       return false;
     }
+    return true;
   };
 
   return (
