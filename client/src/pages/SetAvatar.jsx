@@ -14,9 +14,23 @@ const SetAvatar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState("");
 
-  const handleSetProfileAvatar = () => {
+  const handleSetProfileAvatar = async () => {
     if (selectedAvatar === "") {
       toast.error("Please select an avatar.");
+    } else {
+      const user = await JSON.parse(localStorage.getItem("chat-app-user"));
+      const { data } = await axios.post(`${avatarRoute}/${user._id}`, {
+        avatar: avatars[selectedAvatar],
+      });
+
+      if (data.isSet) {
+        user.isAvatarImageSet = true;
+        user.avatarImage = data.image;
+        localStorage.setItem("chat-app-user", JSON.stringify(user));
+        navigate("/");
+      } else {
+        toast.error("Error setting avatar.");
+      }
     }
   };
 
