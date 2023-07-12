@@ -1,15 +1,32 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleValidation();
   };
 
   const handleChange = (e) => {
-    //
+    setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(values.username);
+  };
+
+  const handleValidation = () => {
+    const { password, confirmPassword, username, email } = values;
+    if (password !== confirmPassword) {
+      toast.error("Password doesn't matach.");
+    }
   };
 
   return (
