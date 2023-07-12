@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
-import { toast, ToastContainer } from "react-toastify";
+import { registerRoute } from "../utils/API";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -11,21 +13,47 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleValidation();
+
+    console.log("In validation");
+    const { password, confirmPassword, username, email } = values;
+    const { data } = await axios.post(registerRoute, {
+      username,
+      email,
+      password,
+    });
+    if (data.status === false) {
+      toast.error(data.msg);
+    }
+    if (data.status === true) {
+      localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+    }
+    navigate("/");
+    console.log(data);
   };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values.username);
+    // console.log(values.username);
   };
 
   const handleValidation = () => {
     const { password, confirmPassword, username, email } = values;
     if (password !== confirmPassword) {
       toast.error("Password doesn't matach.");
+      return false;
+    } else if (username.length < 3) {
+      toast.error("Username too short");
+      return false;
+    } else if (password.length < 3) {
+      toast.error("Password too short");
+      return false;
+    } else if (email.trim() === "") {
+      toast.error("Email cannot be blank");
+      return false;
     }
   };
 
