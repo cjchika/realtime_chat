@@ -22,7 +22,7 @@ const SetAvatar = () => {
       const { data } = await axios.post(`${avatarRoute}/${user._id}`, {
         avatar: avatars[selectedAvatar],
       });
-
+      console.log(data);
       if (data.isSet) {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
@@ -49,6 +49,12 @@ const SetAvatar = () => {
       setIsLoading(false);
     };
     fetchAvatar();
+  }, []);
+
+  useEffect(() => {
+    if (!localStorage.getItem("chat-app-user")) {
+      navigate("/login");
+    }
   }, []);
 
   return (
