@@ -10,7 +10,7 @@ import ChatContainer from "../components/ChatContainer";
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
-  const [currentChat, setCurrentChat] = useState("");
+  const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 

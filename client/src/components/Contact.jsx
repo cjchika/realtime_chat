@@ -58,9 +58,9 @@ const Contact = ({ contacts, currentUser, changeChat }) => {
                 alt="avatar"
               />
             </div>
-          </div>
-          <div className="username">
-            <h2>{currentUsername}</h2>
+            <div className="username">
+              <h2>{currentUsername}</h2>
+            </div>
           </div>
         </Container>
       )}
