@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/API";
 import Contact from "../components/Contact";
 import Welcome from "../components/Welcome";
+import ChatContainer from "../components/ChatContainer";
 
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
@@ -49,7 +50,11 @@ const Chat = () => {
           currentUser={currentUser}
           changeChat={handleChatChange}
         />
-        <Welcome currentUser={currentUser} />
+        {currentChat === undefined ? (
+          <Welcome currentUser={currentUser} />
+        ) : (
+          <ChatContainer currentUser={currentUser} />
+        )}
       </div>
     </Container>
   );
