@@ -4,10 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/API";
 import Contact from "../components/Contact";
+import Welcome from "../components/Welcome";
 
 const Chat = () => {
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
+  const [currentChat, setCurrentChat] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,10 +37,19 @@ const Chat = () => {
     fetchUsers();
   }, []);
 
+  const handleChatChange = (chat) => {
+    setCurrentChat(chat);
+  };
+
   return (
     <Container>
       <div className="container">
-        <Contact contacts={contacts} currentUser={currentUser} />
+        <Contact
+          contacts={contacts}
+          currentUser={currentUser}
+          changeChat={handleChatChange}
+        />
+        <Welcome currentUser={currentUser} />
       </div>
     </Container>
   );
