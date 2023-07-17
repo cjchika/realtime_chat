@@ -31,6 +31,7 @@ const Chat = () => {
       if (currentUser) {
         if (currentUser.isAvatarImageSet) {
           const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+          // console.log(data.data);
           setContacts(data.data);
         } else {
           navigate("/setAvatar");

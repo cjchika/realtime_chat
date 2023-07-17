@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logout from "./Logout";
 import Messages from "./Messages";
-import ChatInput from "./chatInput";
+import ChatInput from "./ChatInput";
 
 const ChatContainer = ({ currentChat }) => {
   const handleSendMsg = async (msg) => {
