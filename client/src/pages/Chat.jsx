@@ -39,7 +39,7 @@ const Chat = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [isLoaded]);
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);

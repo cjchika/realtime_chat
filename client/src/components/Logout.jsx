@@ -18,13 +18,15 @@ const Logout = () => {
   );
 };
 
+export default Logout;
+
 const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0%.5rem;
-  border-radius: 0%.5rem;
-  background-color: #9a8;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #9a86f3;
   border: none;
   cursor: pointer;
   svg {
@@ -32,5 +34,3 @@ const Button = styled.button`
     color: #ebe7ff;
   }
 `;
-
-export default Logout;

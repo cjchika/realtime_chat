@@ -131,10 +131,10 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     .avatar {
       img {
-        height: 4rem;
+        height: 3rem;
         max-inline-size: 100%;
       }
     }
