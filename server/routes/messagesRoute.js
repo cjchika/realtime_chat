@@ -4,7 +4,7 @@ const {
   getAllMessages,
 } = require("../controllers/messagesController");
 
-router.get("/addMessage", addMessage);
+router.post("/addMessage", addMessage);
 router.get("/allMessages", getAllMessages);
 
 module.exports = router;
