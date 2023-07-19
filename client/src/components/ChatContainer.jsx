@@ -3,7 +3,7 @@ import axios from "axios";
 import { sendMessageRoute, getMessagesRoute } from "../utils/API";
 import styled from "styled-components";
 import Logout from "./Logout";
-import Messages from "./Messages";
+// import Messages from "./Messages";
 import ChatInput from "./ChatInput";
 
 const ChatContainer = ({ currentChat, currentUser }) => {

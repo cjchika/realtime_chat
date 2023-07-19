@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Picker from "emoji-picker-react";
+import Picker, { Emoji } from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
 import { BsEmojiSmileFill } from "react-icons/bs";
 
@@ -12,9 +12,9 @@ const ChatInput = ({ handleSendMsg }) => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-  const handleEmojiClick = (event, emoji) => {
+  const handleEmojiClick = (event) => {
     let message = msg;
-    message + -emoji.emoji;
+    message += event.emoji;
     setMsg(message);
   };
 
